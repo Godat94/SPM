@@ -9,7 +9,7 @@
 class User{
     private $dbHost     = "localhost";
     private $dbUsername = "root";
-    private $dbPassword = "";
+    private $dbPassword = "1234";
     private $dbName     = "codexworld";
     private $userTbl    = "users";
     
