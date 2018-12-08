@@ -1,7 +1,7 @@
-$connectstr_dbhost = '127.0.0.1';
+$connectstr_dbhost = '127.0.0.1:52941';
 $connectstr_dbname = 'codexworld';
 $connectstr_dbusername = 'azure';
-$connectstr_dbpassword = '6#vWHD_$';
+$connectstr_dbpassword = 'password';
 
 foreach ($_SERVER as $key => $value) {
     if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
