@@ -13,6 +13,11 @@ class User{
     private $dbName     = "codexworld";
     private $userTbl    = "users";
     
+    foreach ($_SERVER as $key => $value) {
+    if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
+        continue;
+    }
+    
     public function __construct(){
         if(!isset($this->db)){
             // Connect to the database
