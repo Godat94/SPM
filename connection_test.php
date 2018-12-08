@@ -1,5 +1,5 @@
 $connectstr_dbhost = '127.0.0.1:52941';
-$connectstr_dbname = 'localdb';
+$connectstr_dbname = 'codexworld';
 $connectstr_dbusername = 'azure';
 $connectstr_dbpassword = 'password';
 
