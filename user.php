@@ -11,7 +11,7 @@ class User{
     private $dbUsername = "azure";
     private $dbPassword = "password";
     private $dbName     = "localdb";
-    //private $userTbl    = "users";
+    private $userTbl    = "users";
     
     foreach ($_SERVER as $key => $value) {
     if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
