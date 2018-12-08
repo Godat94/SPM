@@ -8,8 +8,8 @@
  */
 class User{
     private $dbHost     = "192.168.64.2";
-    private $dbUsername = "root";
-    private $dbPassword = "";
+    private $dbUsername = "azure";
+    private $dbPassword = "6#vWHD_$";
     private $dbName     = "codexworld";
     private $userTbl    = "users";
     
