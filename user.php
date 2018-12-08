@@ -7,9 +7,9 @@
  * @license   http://www.codexworld.com/license
  */
 class User{
-    private $dbHost     = "localhost";
+    private $dbHost     = "192.168.64.2";
     private $dbUsername = "root";
-    private $dbPassword = "1234";
+    private $dbPassword = "";
     private $dbName     = "codexworld";
     private $userTbl    = "users";
     
