@@ -1,6 +1,6 @@
 $connectstr_dbhost = '127.0.0.1';
 $connectstr_dbname = 'codexworld';
-$connectstr_dbusername = 'azure@localhost';
+$connectstr_dbusername = 'azure';
 $connectstr_dbpassword = '6#vWHD_$';
 
 foreach ($_SERVER as $key => $value) {
