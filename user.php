@@ -7,16 +7,11 @@
  * @license   http://www.codexworld.com/license
  */
 class User{
-    private $dbHost     = "127.0.0.1:52941";
-    private $dbUsername = "azure";
-    private $dbPassword = "password";
-    private $dbName     = "localdb";
+    private $dbHost     = "localhost";
+    private $dbUsername = "root";
+    private $dbPassword = "";
+    private $dbName     = "codexworld";
     private $userTbl    = "users";
-    
-    foreach ($_SERVER as $key => $value) {
-    if (strpos($key, "MYSQLCONNSTR_localdb") !== 0) {
-        continue;
-    }
     
     public function __construct(){
         if(!isset($this->db)){
