@@ -11,7 +11,7 @@ class User{
     private $dbUsername = "azure";
     private $dbPassword = "password";
     private $dbName     = "localdb";
-    //private $userTbl    = "users";
+    private $userTbl    = "users";
     
     public function __construct(){
         if(!isset($this->db)){
