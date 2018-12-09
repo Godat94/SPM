@@ -7,11 +7,11 @@
  * @license   http://www.codexworld.com/license
  */
 class User{
-    private $dbHost     = "localhost";
-    private $dbUsername = "root";
-    private $dbPassword = "";
-    private $dbName     = "codexworld";
-    private $userTbl    = "users";
+    private $dbHost     = "127.0.0.1:56562";
+    private $dbUsername = "azure";
+    private $dbPassword = "password";
+    private $dbName     = "localdb";
+    //private $userTbl    = "users";
     
     public function __construct(){
         if(!isset($this->db)){
