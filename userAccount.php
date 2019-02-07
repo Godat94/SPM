@@ -129,7 +129,7 @@ if(isset($_POST['signupSubmit'])){
 	//store login status into the session
     $_SESSION['sessData'] = $sessData;
 	//redirect to the home page
-    header("Location:modeler.php");
+    header("Location:fileManager.php");
 }elseif(isset($_POST['forgotSubmit'])){
 	$frmDisplay = '';
 	//check whether email is empty
