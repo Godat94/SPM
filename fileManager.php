@@ -1,4 +1,3 @@
-<!DOCTYPE html>
 <html>
 <head>
 	<meta charset="utf-8">
@@ -53,7 +52,50 @@
 					</div>
 				</form>
 				
-				
+				<!-- Add link -->
+				<div class="float-right">
+          <a href="<?php echo BASE_URL.'fileAddEdit.php'; ?>" class="btn btn-success"><i class="upf"></i> Upload File</a>
+					<a href="<?php echo BASE_URL.'modeler.php'; ?>" class="btn btn-success"><i class="plus"></i> New File</a>
+				</div>
+			</div>
+			
+			<!-- Data list table --> 
+			<table class="table table-striped table-bordered">
+				<thead class="thead-dark">
+					<tr>
+						<th>File Name</th>
+						<th>Created</th>
+						<th>Modified</th>
+						<th>Action</th>
+					</tr>
+				</thead>
+				<tbody>
+					<?php
+					if(!empty($userFiles)){ foreach($userFiles as $row){
+					?>
+					<tr>
+						<td><?php echo $row['name']; ?></td>
+						<td><?php echo $row['created']; ?></td>
+						<td><?php echo $row['modified']; ?></td>
+						<td>
+							<a href="<?php echo BASE_URL.'modelerView.php?id='.$row['id']; ?>" target="_blank" class="btn btn-primary">view</a>
+							<a href="<?php echo BASE_URL.'modeler.php?id='.$row['id']; ?>" class="btn btn-warning">edit</a>
+							<a href="<?php echo BASE_URL.'fileAction.php?action_type=delete&id='.$row['id']; ?>" class="btn btn-danger" onclick="return confirm('Are you sure to delete?')">delete</a>
+						</td>
+					</tr>
+					<?php } }else{ ?>
+					<tr><td colspan="4">No file(s) found...</td></tr>
+					<?php } ?>
+				</tbody>
+			</table>
+			
+			<!-- Display pagination links -->
+			<div class="pagination pull-right">
+				<?php echo $pagination->createLinks(); ?>
+			</div>
+		</div>
+	</div>
+</section>
 
 <!-- Footer -->
 <?php require_once 'elements/footer.php'; ?> 
