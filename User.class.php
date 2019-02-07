@@ -1,29 +1,14 @@
 <?php
 /*
  * User Class
- * This class is used for database related (connect fetch, insert, and update) operations
+ * This class is used for database related ( fetch, insert, and update) operations
  * @author    CodexWorld.com
  * @url       http://www.codexworld.com
  * @license   http://www.codexworld.com/license
  */
-class User{
-    private $dbHost     = "webappgroupswitzerland-mysqldbserver.mysql.database.azure.com";
-    private $dbUsername = "mysqldbuser@webappgroupswitzerland-mysqldbserver";
-    private $dbPassword = "@Italy2018";
-    private $dbName     = "gsdb4";
+require_once 'DB.class.php';
+class User extends DB{
     private $userTbl    = "users";
-    
-    public function __construct(){
-        if(!isset($this->db)){
-            // Connect to the database
-            $conn = new mysqli($this->dbHost, $this->dbUsername, $this->dbPassword, $this->dbName);
-            if($conn->connect_error){
-                die("Failed to connect with MySQL: " . $conn->connect_error);
-            }else{
-                $this->db = $conn;
-            }
-        }
-    }
     
     /*
      * Returns rows from the database based on the conditions

@@ -2,6 +2,11 @@
 //start session
 session_start();
 
+//config file
+include_once 'config.php';
+
+$userLoggedIn = 0;
+
 //get session data
 $sessData = !empty($_SESSION['sessData'])?$_SESSION['sessData']:'';
 
@@ -19,14 +24,15 @@ if(!empty($sessData['status']['msg'])){
 <!DOCTYPE html>
 <html>
 <head>
-	<title>Forgot Password | PHP Login System by GroupSwitzerland</title>
-	<meta name="viewport" content="width=device-width, initial-scale=1">
-	<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+	<meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+	<title>Forgot Password | <?php echo SITE_NAME; ?></title>
 	<meta name="description" content="" />
 	<meta name="keywords" content="" />
 	<link rel="stylesheet" href="//fonts.googleapis.com/css?family=Roboto:400,100,300,500,700,900" 	type="text/css" media="all">
-	<link href="css/style.css" rel="stylesheet" type="text/css" media="all" />
-	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+	<link href="<?php echo BST_URL; ?>css/bootstrap.min.css" rel="stylesheet" type="text/css" media="all" />
+	<link href="<?php echo CSS_URL; ?>style.css" rel="stylesheet" type="text/css" media="all" />
+	<script src="<?php echo JS_URL; ?>jquery.min.js"></script>
 	<script>
 	$(document).ready(function(){
 		$( ".menu-icon" ).on('click', function() {
@@ -36,28 +42,44 @@ if(!empty($sessData['status']['msg'])){
 	</script>
 </head>
 <body>
-<h1>PHP USER REGISTRATION AND LOGIN SYSTEM</h1>
-<div class="container">
-	<h2>Recover Account Password</h2>
-	<div class="regisFrm">
-		<h5>Enter the email address you used to sign up and we'll send you a link to reset your password.</h5>
-		<?php if(isset($_GET['frmDis']) && $_GET['frmDis'] == 0){ ?>
-		<?php echo !empty($statusMsg)?'<p class="statusMsg '.$statusMsgType.'">'.$statusMsg.'</p>':''; ?>
-		<h5>Didn’t receive the email? <a href="forgotPassword.php">Request reset link</a></h5>
-		<?php }else{ ?>
-		<?php echo !empty($statusMsg)?'<p class="statusMsg '.$statusMsgType.'">'.$statusMsg.'</p>':''; ?>
-		<form action="userAccount.php" method="post">
-			<input type="email" name="email" placeholder="Email" required="">
-			<div class="send-button">
-				<input type="submit" name="forgotSubmit" value="Continue">
-			</div>
-		</form>
-		<p class="mrt-10">Don't want to reset? <a href="index.php">Sign In</a></p>
-		<?php } ?>
+<!-- Navigation -->
+<?php require_once 'elements/nav_menu.php'; ?> 
+
+<header class="bg-primary text-white">
+	<div class="container text-center">
+		<h1>RECOVER ACCOUNT PASSWORD</h1>
 	</div>
-</div>
-<div class="cw_copyright">
-	<p>&copy; <?php echo date("Y"); ?> GroupSwitzerland. All rights reserved</p>
-</div>
+</header>
+<section id="about">
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12 mx-auto">
+				<div class="user-box">
+					<div class="regisFrm">
+						<h5>Enter the email address you used to sign up and we'll send you a link to reset your password.</h5>
+						<?php if(isset($_GET['frmDis']) && $_GET['frmDis'] == 0){ ?>
+						<?php echo !empty($statusMsg)?'<p class="statusMsg '.$statusMsgType.'">'.$statusMsg.'</p>':''; ?>
+						<h5>Didn’t receive the email? <a href="forgotPassword.php">Request reset link</a></h5>
+						<?php }else{ ?>
+						<?php echo !empty($statusMsg)?'<p class="statusMsg '.$statusMsgType.'">'.$statusMsg.'</p>':''; ?>
+						<form action="<?php echo BASE_URL; ?>userAccount.php" method="post">
+							<input type="email" name="email" placeholder="Email" required="">
+							<div class="send-button">
+								<input type="submit" name="forgotSubmit" value="Continue">
+							</div>
+						</form>
+						<p class="mrt-10">Don't want to reset? <a href="<?php echo BASE_URL; ?>">Sign In</a></p>
+						<?php } ?>
+					</div>
+				</div>
+			</div>
+			</div>
+		</div>
+	</div>
+</section>
+
+<!-- Footer -->
+<?php require_once 'elements/footer.php'; ?> 
+
 </body>
 </html>

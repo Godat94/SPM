@@ -1,15 +1,15 @@
 <?php
-// email helper file
-include_once 'email_functions.php';
-
 // config file
 include_once 'config.php';
+
+// email helper file
+include_once 'email_functions.php';
 
 //start session
 session_start();
 
 //load and initialize user class
-include_once 'user.php';
+include_once 'User.class.php';
 $user = new User();
 
 function validateDate($date, $format = 'Y-m-d'){
@@ -41,19 +41,19 @@ if(isset($_POST['signupSubmit'])){
                 $sessData['status']['msg'] = 'Username already exists, please use another.';
 			}else{
 				$dob_date = '';
-				if(!empty($_POST['dob'])){
-					$dob = $_POST['dob'];
-					$dobArr = explode('/', $dob);
-					if(!empty($dobArr)){
-						$dob_date = $dobArr[0];
-						$dob_month = $dobArr[1];
-						$dob_year = $dobArr[2];
-						$date = $dob_year.'-'.$dob_month.'-'.$dob_date;
-						if(validateDate($date)){
-							$dob_date = $date;
-						}
-					}
-				}
+                if(!empty($_POST['dob']) && strpos($_POST['dob'], '/') !== false){
+                    $dob = $_POST['dob'];
+                    $dobArr = explode('/', $dob);
+                    if(!empty($dobArr)){
+                        $dob_date = $dobArr[0];
+                        $dob_month = $dobArr[1];
+                        $dob_year = $dobArr[2];
+                        $date = $dob_year.'-'.$dob_month.'-'.$dob_date;
+                        if(validateDate($date)){
+                            $dob_date = $date;
+                        }
+                    }
+                }
 				
 				//email verification code
 				$uniqidStr = md5(uniqid(mt_rand()));
@@ -92,6 +92,7 @@ if(isset($_POST['signupSubmit'])){
     $redirectURL = ($sessData['status']['type'] == 'success')?'index.php':'registration.php';
 	//redirect to the home/registration page
     header("Location:".$redirectURL);
+    exit();
 }elseif(isset($_POST['loginSubmit'])){
 	//check whether login details are empty
     if(!empty($_POST['username']) && !empty($_POST['password'])){
@@ -109,7 +110,7 @@ if(isset($_POST['signupSubmit'])){
 			$sessData['status']['msg'] = 'Your account activation is pending, please check your email to verify and activate your account.';
 		}elseif($userData){
 			//if remember me is checked
-			if ($_POST['rememberMe'] == 1) {
+			if (!empty($_POST['rememberMe']) && $_POST['rememberMe'] == 1) {
 				setcookie('rememberUserId', $userData['id'], time() + (86400));
 			}
 			
@@ -128,7 +129,7 @@ if(isset($_POST['signupSubmit'])){
 	//store login status into the session
     $_SESSION['sessData'] = $sessData;
 	//redirect to the home page
-    header("Location:index.php");
+    header("Location:fileManager.php");
 }elseif(isset($_POST['forgotSubmit'])){
 	$frmDisplay = '';
 	//check whether email is empty
@@ -286,7 +287,7 @@ if(isset($_POST['signupSubmit'])){
 			$prevPicture = $userData['picture'];
 			
 			$dob_date = '';
-			if(!empty($_POST['dob'])){
+			if(!empty($_POST['dob']) && strpos($_POST['dob'], '/') !== false){
 				$dob = $_POST['dob'];
 				$dobArr = explode('/', $dob);
 				if(!empty($dobArr)){
